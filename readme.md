@@ -3,7 +3,7 @@
 
 ## English
 
-This is a Sublime Text plugin with Golang develop. He difference is that, before it will be killed your process.
+This is a sublime text plugin of golang developing. The difference between it and the other plugin is it will kill the previous process before compilation run.
 
 
 ## 简体中文
