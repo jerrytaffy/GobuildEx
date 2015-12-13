@@ -1,0 +1,10 @@
+[
+	{ "caption": "gobuildex" },
+	{
+		"caption": "GoBuildEx",
+		"children":
+		[
+			{ "caption": "Build", "command": "gobuild_ex" },
+		]
+	}
+]

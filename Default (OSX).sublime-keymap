@@ -1,0 +1,3 @@
+[
+	{ "keys": ["super+b"], "command": "gobuild_ex" },
+]

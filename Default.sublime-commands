@@ -1,0 +1,6 @@
+[
+    {
+        "caption": "GoBuildEx: Build",
+        "command": "gobuild_ex"
+    }
+]
