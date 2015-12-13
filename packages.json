@@ -1,15 +1,12 @@
 {
-  "schema_version": "0.1",
-  "packages": [
+  "name": "GobuildEx",
+  "author": "jerrytaffy",
+  "details": "https://github.com/jerrytaffy/GobuildEx",
+  "releases": [
     {
-      "name": "GobuildEx",
-      "description": "This is a Sublime Text plugin with Golang develop. He difference is that, before it will be killed your process.",
-      "author": "jerrytaffy",
-      "homepage": "https://github.com/jerrytaffy/GobuildEx",
-      "last_modified": "2015/12/13",
-      "platforms": {
-        "*": []
-      }
+      "sublime_text": "*",
+      "platforms": ["osx"],
+      "tags": true
     }
   ]
 }
