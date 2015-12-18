@@ -1,5 +1,5 @@
 import sublime, sublime_plugin, os, subprocess, _thread
-import subprocess
+import subprocess, time
 
 class GobuildExCommand(sublime_plugin.TextCommand):
 
@@ -28,10 +28,28 @@ class GobuildExCommand(sublime_plugin.TextCommand):
 		path = f.replace(fileName, "")
 		runCmd = "cd {0}\n/usr/local/go/bin/go run {1}".format(path,fileName)
 		print(">>>#: {0}".format(runCmd))
-		print(">>>#: Services is running.......")
+		print(">>>#: Services ready to run.......")
 
-		# Thread run system cmd
-		_thread.start_new_thread(self.goruncmd , (runCmd,))
+		settings = sublime.load_settings('gobuildex.sublime-settings')
+		mode = settings.get("mode", 0)
+		print("Run mode:", mode)
+
+		if mode==0:
+			# run in iterm terminal
+			appleScriptCmd = '''osascript -e 'tell application "iTerm" to activate' '''
+			os.system(appleScriptCmd)
+			# stop & wait iterm to run
+			time.sleep(0.5)
+			appleScriptCmd = '''osascript -e 'tell application "iTerm" to activate' -e 'tell application "System Events" to tell process "iTerm" to keystroke "{0}"' -e 'tell application "System Events" to tell process "iTerm" to key code 52' '''.format(runCmd)
+			os.system(appleScriptCmd)
+		elif mode==1:
+			# Run on normal terminal
+			appleScriptCmd = '''osascript -e 'tell application "Terminal" to activate' -e 'tell application "Terminal" to do script "{0}"' '''.format(runCmd)
+			print(">>>#: applescript:", appleScriptCmd)
+			os.system(appleScriptCmd)
+		else:
+			# Run on sublime console
+			_thread.start_new_thread(self.goruncmd , (runCmd,))
 
 	def goruncmd(self, runCmd):
 		proc = subprocess.Popen(runCmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
