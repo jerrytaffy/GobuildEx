@@ -38,6 +38,8 @@ class GobuildExCommand(sublime_plugin.TextCommand):
 			# run in iterm terminal
 			appleScriptCmd = '''osascript -e 'tell application "iTerm" to activate' '''
 			os.system(appleScriptCmd)
+			appleScriptCmd = '''osascript -e 'tell application "System Events" to keystroke "t" using command down' '''
+			os.system(appleScriptCmd)
 			# stop & wait iterm to run
 			time.sleep(0.5)
 			appleScriptCmd = '''osascript -e 'tell application "iTerm" to activate' -e 'tell application "System Events" to tell process "iTerm" to keystroke "{0}"' -e 'tell application "System Events" to tell process "iTerm" to key code 52' '''.format(runCmd)
